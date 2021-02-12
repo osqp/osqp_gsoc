@@ -5,7 +5,7 @@
 - Idea : implement anderson acceleration for OSQP using a home-rolled QR method.   We have a Julia version already.
 - Idea : implement the differentiation stuff.
 - Idea : finalise the user definable linear algebra stuff (just needs CMAKE updates I think), then finalise support for BLAS using it (done as a prototype) and add some kind of basic GPU / CUDA example using it also.
-
+- Idea: use GitHub Actions for CI
 
 ## Other examples
 
