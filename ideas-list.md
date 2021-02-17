@@ -54,7 +54,7 @@ OSQP relies on a relatively small number of linear algebra routines. It uses a c
 
 We will adopt an object-oriented approach to abstract data structures representing vectors and matrices, and define a set of operations on these structures, e.g., vector addition, matrix-vector multiplication etc. We will provide at least two implementations, but will also allow for user-definable implementations. Switching between various implementations will be made easy by setting appropriate flags during code compilation.
 
-Such abstraction will not be used only to run OSQP on different hardware architectures, but also to optimize the solver for speed or memory. For instance, the current data structure representing a symmetric matrix stores only its upper-triangular part to reduce the memory footprint. However, evaluating the matrix-vector product would be parallelizable if the whole matrix were stored. Hence, if memory is not an issue for a specific application, the user would prefer the latter implementation as it would be faster.
+Such abstraction will not be used only to run OSQP on different hardware architectures, but also to optimize the solver for speed or memory. For instance, the current data structure representing a symmetric matrix stores only its upper-triangular part to reduce the memory footprint. However, evaluating the matrix-vector product would be parallelizable if the full matrix were stored. Hence, if memory is not an issue for a specific application, the user would prefer the latter implementation as it would be faster.
 
 Moreover, we will be able to use existing BLAS libraries, which consist of linear algebra operations that are highly optimized for most common hardware architectures.
 
