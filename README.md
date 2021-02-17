@@ -1,4 +1,4 @@
-# Google OSQP Summer of Code
+# OSQP Summer of Code
 
 ## IDEAS
 
