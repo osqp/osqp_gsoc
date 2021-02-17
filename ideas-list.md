@@ -43,11 +43,11 @@ OSQP is a numerical optimization package for solving sparse convex quadratic pro
 
 | **Intensity**  | **Priority**  | **Involves**   | **Mentors**  |
 | -------------  | ------------  | -------------  | -----------  |
-| Moderate       | High          | Allow OSQP to use external and user-provided linear algebra libraries | [Goran Banjac](https://github.com/gbanjac), [Paul Goulart](https://github.com/goulart-paul), and [Bartolomeo Stellato](https://github.com/bstellato) |
+| Moderate       | High          | Allow OSQP to use external and user-provided linear algebra implementations | [Goran Banjac](https://github.com/gbanjac), [Paul Goulart](https://github.com/goulart-paul), and [Bartolomeo Stellato](https://github.com/bstellato) |
 
 #### Abstract
 
-OSQP relies on a relatively small number of linear algebra routines. It uses a custom implementation of these routines, which makes the solver library-free, but its hard-coded linear algebra makes it impossible to run it on non-standard hardware architectures such as GPUs. To be able to exploit specialized hardware architectures, one needs to abstract data structures and computationally intensive linear algebra routines, and link a specific implementation during code compilation.
+OSQP relies on a relatively small number of linear algebra routines. It uses a custom implementation of these routines, which makes the solver library-free, but its hard-coded linear algebra makes it impossible to run on non-standard hardware architectures such as GPUs. To be able to exploit specialized hardware architectures, one needs to abstract data structures and computationally intensive linear algebra routines, and link a specific implementation during code compilation.
 
 
 #### Technical details
