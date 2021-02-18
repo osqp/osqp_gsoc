@@ -97,8 +97,19 @@ Moreover, we will be able to use existing BLAS libraries, which consist of linea
 
 #### Abstract
 
+OSQP is a lightweight C library that doesn't rely on other external libraries, making it perfect for use in embedded optimization applications. There is currently support for generating embedded code in two of the interfaces (MATLAB and Python), but the generated code only allows for one problem to be embedded in each application. This project will make the code generation a part of the C library itself, so it will be available for all interfaces to use and allow for easier maintenance and updating as the solver evolves. At the same time, the code generation will be redesigned so that it can support multiple problems in a single application (as is found in control systems using both optimization-based estimators and controllers).
+
 #### Technical details
+
+The main task for this project will be moving the code generation system from the interfaces where it currently exists into the C library as an optional component that can be compiled into all the interfaces. This component will handle packaging the problem data into the C files, and then generating the subset of C files the solver needs when embedded.
+
+As part of this, we want to implement problem separation - where the data for each problem lives inside its own variable "namespace" so that multiple problems can then be compiled into the same program without causing multiply-defined variable errors.
 
 #### Helpful experience
 
+- Knowledge of Python or MATLAB to understand the current code generation system
+- Prior work with CMake and coding in C
+
 #### First steps
+
+- Read the paper: https://web.stanford.edu/~boyd/papers/pdf/osqp_embedded.pdf
