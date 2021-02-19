@@ -6,6 +6,18 @@ OSQP is a numerical optimization package for solving sparse convex quadratic pro
 - **Supports warm-starting:** providing a good initial guess reduces computation times considerably
 - **Detects infeasible and unbounded problems:** provides certificates of primal and dual infeasibility without modifying the problem
 
+
+
+## Table of contents
+- [Mentors](#mentors)
+- [Project Ideas](#project-ideas)
+  * [Quadratic program differentiation](#quadratic-program-differentiation)
+  * [User-provided linear algebra](#user-provided-linear-algebra)
+  * [Algorithm improvements: acceleration](#algorithm-improvements--acceleration)
+  * [Support for embedded systems](#support-for-embedded-systems)
+
+
+
 ## Mentors
 
 - [Bartolomeo Stellato](https://github.com/bstellato)
@@ -79,26 +91,47 @@ Moreover, we will be able to use existing BLAS libraries, which consist of linea
 
 #### First steps
 
-- read the paper: https://arxiv.org/abs/1711.08013
-- understand the numerical algorithm implemented by OSQP and the main computational bottlenecks
+- Read the paper: https://arxiv.org/abs/1711.08013
+- Understand the numerical algorithm implemented by OSQP and the main computational bottlenecks
 
 
 
-### Algorithm improvements: Anderson acceleration
+### Algorithm improvements: acceleration
 
 | **Intensity**  | **Priority**  | **Involves**   | **Mentors**  |
 | -------------  | ------------  | -------------  | -----------  |
-| Moderate       | Medium        | Implement the Anderson acceleration scheme to speed up convergence of ADMM | [Paul Goulart](https://github.com/goulart-paul), [Bartolomeo Stellato](https://github.com/bstellato), and [Goran Banjac](https://github.com/gbanjac) |
+| Moderate       | High          | Implement the ADMM acceleration to speed up OSQP convergence  | [Paul Goulart](https://github.com/goulart-paul), [Bartolomeo Stellato](https://github.com/bstellato), and [Goran Banjac](https://github.com/gbanjac) |
 
 
 #### Abstract
 
+First-order methods like the OSQP solver algorithm, have recently gained popularity due top their simplicity and applicability in a wide range of areas, including neural networks training and large-scale decision-making.
+However, in some cases they can converge slowly, thereby requiring more iterations and computing time.
+Despite the [its smart parameter selection](https://osqp.org/docs/solver/index.html#rho-step-size) that improves convergence, OSQP would greatly benefit from an acceleration scheme.
+
+The main idea of this project is to implement an acceleration scheme in OSQP along the same lines of recent Julia implementation in [COSMO.jl](https://github.com/oxfordcontrol/COSMO.jl). The OSQP acceleration implementation will include safeguards in case of numerical errors and has the potential to significantly reduce the computation time.
+
 #### Technical details
 
+The implementation will be along the lines of [COSMOAccelerators.jl](https://github.com/oxfordcontrol/COSMOAccelerators.jl) which is used to accelerate [COSMO.jl](https://github.com/oxfordcontrol/COSMO.jl).
+We will also use the [SCS](https://github.com/cvxgrp/scs) implementation as a reference.
+
+One of our main vision is to have OSQP library free so that it can be implemented on any platform (from embedded to large scale). Therefore, OSQP will not explicitly depend on any large linear algebra library.
+This means any operation involved in the acceleration, including linear system solution, has to rely on internal functions. We will mostly refer to implementation in [COSMOAccelerators.jl](https://github.com/oxfordcontrol/COSMOAccelerators.jl), which, compared to the one in [SCS](https://github.com/cvxgrp/scs), does not require any link to LAPACK.
+
+The project will involve two main steps
+- First prototype in Python to check reduction in algorithm steps
+- C implementation in core solver
+
 #### Helpful experience
+- Basic knowledge of linear algebra and least squares (in particular, [QR decomposition from VMLS book](http://vmls-book.stanford.edu/))
+- Basic knowledge of ADMM algorithm
+
 
 #### First steps
-
+- Read [recent survey on Acceleration Schemes](https://arxiv.org/pdf/2101.09545.pdf) (in particular Chapter 3 on Nonlinear Acceleration)
+- Get familiar with acceleration code in [COSMOAccelerators.jl](https://github.com/oxfordcontrol/COSMOAccelerators.jl)
+- Read paper on [safeguards for Anderson acceleration](https://arxiv.org/pdf/1808.03971.pdf)
 
 
 
