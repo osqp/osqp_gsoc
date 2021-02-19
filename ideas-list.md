@@ -27,9 +27,9 @@ OSQP is a numerical optimization package for solving sparse convex quadratic pro
 #### Abstract
 The goal of this project is to allow OSQP to internally compute derivatives of the optimal solution with respect to the problem parameters. In this way we can differentiate the optimal solutions with respect to the coefficients in the objective and constraints of a quadratic optimization problem (see [1](https://arxiv.org/pdf/1703.00443.pdf), [2](http://reports-archive.adm.cs.cmu.edu/anon/anon/usr/ftp/2019/CMU-CS-19-109.pdf) and [3](https://arxiv.org/pdf/1904.09043.pdf)).
 
-This technique is powerful tool to enable to use OSQP in differentiable architectures such as, neural network layers. These tools have seen a wide range of applications from game theory (see [4](https://arxiv.org/pdf/1805.02777)) to control (see [5](https://web.stanford.edu/~boyd/papers/pdf/learning_cocps.pdf) and [6](https://proceedings.neurips.cc/paper/2018/file/ba6d843eb4251a4526ce65d1807a9309-Paper.pdf)).
+This technique is powerful tool to use OSQP in differentiable architectures such as, neural network layers. These tools have seen a wide range of applications from game theory (see [4](https://arxiv.org/pdf/1805.02777)) to control (see [5](https://web.stanford.edu/~boyd/papers/pdf/learning_cocps.pdf) and [6](https://proceedings.neurips.cc/paper/2018/file/ba6d843eb4251a4526ce65d1807a9309-Paper.pdf)).
 
-Having derivatives computed within OSQP allow users to quickly embed it in neural network architectures and perform end-to-end prediction and optimization tasks from various different languages.
+With OSQP being able to directly compute derivatives, users could quickly embed it in neural network architectures, and perform end-to-end prediction and optimization tasks from different languages.
 
 
 #### Technical details
