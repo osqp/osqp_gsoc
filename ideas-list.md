@@ -16,24 +16,38 @@ OSQP is a numerical optimization package for solving sparse convex quadratic pro
 
 ## Project Ideas
 
-**GB:** *Maybe each of us can take a lead in one project. I will be adding stuff in the linear-algebra part now.*
 
 
-
-
-### QP differentiation
+### Quadratic program differentiation
 
 | **Intensity**  | **Priority**  | **Involves**   | **Mentors**  |
 | -------------  | ------------  | -------------  | -----------  |
 | Moderate       | Medium        | Differentiate solutions of quadratic programs | [Bartolomeo Stellato](https://github.com/bstellato), [Goran Banjac](https://github.com/gbanjac), and [Paul Goulart](https://github.com/goulart-paul) |
 
 #### Abstract
+The goal of this project is to allow OSQP to internally compute derivatives of the optimal solution with respect to the problem parameters. In this way we can differentiate the optimal solutions with respect to the coefficients in the objective and constraints of a quadratic optimization problem (see [1](https://arxiv.org/pdf/1703.00443.pdf), [2](http://reports-archive.adm.cs.cmu.edu/anon/anon/usr/ftp/2019/CMU-CS-19-109.pdf) and [3](https://arxiv.org/pdf/1904.09043.pdf)).
+
+This technique is powerful tool to enable to use OSQP in differentiable architectures such as, neural network layers. These tools have seen a wide range of applications from game theory (see [4](https://arxiv.org/pdf/1805.02777)) to control (see [5](https://web.stanford.edu/~boyd/papers/pdf/learning_cocps.pdf) and [6](https://proceedings.neurips.cc/paper/2018/file/ba6d843eb4251a4526ce65d1807a9309-Paper.pdf)).
+
+Having derivatives computed within OSQP allow users to quickly embed it in neural network architectures and perform end-to-end prediction and optimization tasks from various different languages.
+
 
 #### Technical details
+The mathematics behind differentiating quadratic program can befound in [1](https://arxiv.org/pdf/1703.00443.pdf). For general conic programs, we refer to [3](https://arxiv.org/pdf/1904.09043.pdf).
+
+The main package currently performing automatic differentiation for general convex optimization problems is [cvxpylayers](https://github.com/cvxgrp/cvxpylayers). We have written a basic prototype implementation in [osqp-python/pull/46](https://github.com/oxfordcontrol/osqp-python/pull/46). However, the implementation is not complete and it quite inefficient (numpy). The goal of this project is to:
+- finalize the prototype to have a reliable implementation
+- port the differentiation functions in C so that they can be interfaced from other languages
+- interface `osqp-python` with [cvxpylayers](https://github.com/cvxgrp/cvxpylayers)
+- add `osqp-python` submodules to directly interface pytorch and jax libraries
 
 #### Helpful experience
+- Previous knowledge of [convex optimization](https://en.wikipedia.org/wiki/Convex_optimization)
+
 
 #### First steps
+- Read the [OptNet paper](https://arxiv.org/pdf/1703.00443.pdf)
+- Read the [cvxpylayers paper](https://arxiv.org/pdf/1703.00443.pdf)
 
 
 
@@ -70,7 +84,7 @@ Moreover, we will be able to use existing BLAS libraries, which consist of linea
 
 
 
-### Anderson acceleration
+### Algorithm improvements: Anderson acceleration
 
 | **Intensity**  | **Priority**  | **Involves**   | **Mentors**  |
 | -------------  | ------------  | -------------  | -----------  |
