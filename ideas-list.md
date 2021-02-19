@@ -33,11 +33,11 @@ With OSQP being able to directly compute derivatives, users could quickly embed 
 
 
 #### Technical details
-The mathematics behind differentiating quadratic program can befound in [1](https://arxiv.org/pdf/1703.00443.pdf). For general conic programs, we refer to [3](https://arxiv.org/pdf/1904.09043.pdf).
+The mathematics behind differentiating quadratic programs can be found in [1](https://arxiv.org/pdf/1703.00443.pdf). For general conic programs, we refer to [3](https://arxiv.org/pdf/1904.09043.pdf).
 
 The main package currently performing automatic differentiation for general convex optimization problems is [cvxpylayers](https://github.com/cvxgrp/cvxpylayers). We have written a basic prototype implementation in [osqp-python/pull/46](https://github.com/oxfordcontrol/osqp-python/pull/46). However, the implementation is not complete and it quite inefficient (numpy). The goal of this project is to:
 - finalize the prototype to have a reliable implementation
-- port the differentiation functions in C so that they can be interfaced from other languages
+- port the differentiation functions to C so that they can be interfaced from the other interface languages
 - interface `osqp-python` with [cvxpylayers](https://github.com/cvxgrp/cvxpylayers)
 - add `osqp-python` submodules to directly interface pytorch and jax libraries
 
